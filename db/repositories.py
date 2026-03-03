@@ -37,3 +37,26 @@ class UserRepository:
         users = self.session.query(User).filter_by(is_active=True).all()
 
         return users
+
+    def delete_user(self, user_id: int):
+        user = self.session.query(User).get(user_id)
+
+        if user:
+            self.session.delete(user)
+            self.session.commit()
+
+    def update_user(
+        self,
+        user_id: int,
+        first_name: str | None = None,
+        last_name: str | None = None,
+    ):
+        user = self.session.query(User).get(user_id)
+        if user:
+            if first_name:
+                user.first_name = first_name
+            if last_name:
+                user.last_name = last_name
+
+            self.session.add(user)
+            self.session.commit()

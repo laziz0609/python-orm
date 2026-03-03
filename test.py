@@ -34,8 +34,22 @@ def get_active_users():
     users = user_repository.get_active_users()
     print(users)
 
+
+def delete_user():
+    user_repository.delete_user(5)
+
+
+def update_user():
+    user_repository.update_user(
+        6,
+        "TEST",
+    )
+
+
 # create_tables()
 # create_user()
 # get_users()
 # get_user()
 # get_active_users()
+# delete_user()
+update_user()
