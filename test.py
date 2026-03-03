@@ -34,6 +34,8 @@ def get_active_users():
     users = user_repository.get_active_users()
     print(users)
 
-
+# create_tables()
 # create_user()
-get_active_users()
+# get_users()
+# get_user()
+# get_active_users()
