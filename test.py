@@ -26,13 +26,11 @@ def get_users():
 
 
 def get_user():
-    user = user_repository.get_one_user(3)
-    print(user)
+    return user_repository.get_one_user(10)
 
 
 def get_active_users():
     users = user_repository.get_active_users()
-    print(users)
 
 
 def delete_user():
@@ -46,10 +44,36 @@ def update_user():
     )
 
 
-# create_tables()
+def create_profile():
+    user = get_user()
+    user_repository.creat_profile(
+        user,
+        "test",
+        "test",
+    )
+
+
+def create_post():
+    user = get_user()
+    user_repository.creat_post(
+        user,
+        "test",
+        "test",
+    )
+
+
+def get_posts():
+    user = get_user()
+    print(user.posts)
+
+
+create_tables()
 # create_user()
 # get_users()
 # get_user()
 # get_active_users()
 # delete_user()
-update_user()
+# update_user()
+# create_profile()
+# create_post()
+get_posts()

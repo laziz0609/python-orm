@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 
-from .models import User
+from .models import User, Profile, Post
 
 
 class UserRepository:
@@ -60,3 +60,17 @@ class UserRepository:
 
             self.session.add(user)
             self.session.commit()
+
+    def get_user(self, user_id: int) -> User | None:
+        return self.session.query(User).get(user_id)
+
+    def creat_profile(self, user: User, bio: str, picture_url: str):
+        if user and not user.profile:
+            profile = Profile(user_id=user.user_id, bio=bio, picture_url=picture_url)
+            self.session.add(profile)
+            self.session.commit()
+
+    def creat_post(self, user: User, title: str, content: str):
+        post = Post(user_id=user.user_id, title=title, content=content)
+        self.session.add(post)
+        self.session.commit()
